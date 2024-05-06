@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div>
+  <div>
+    <mat-table [dataSource]="dataList" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'w-75'">
+          id
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" [ngClass]="'w-75'">
+          {{ element.id }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Movie Title </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.movieTitle }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="mobile">
+        <mat-header-cell *matHeaderCellDef> UserName </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.user.fullName }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+            (click)="openDialog(element.id)"
+          >
+          UnFavourite
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of favourite"
+    >
+    </mat-paginator>
+  </div>
+</div>
